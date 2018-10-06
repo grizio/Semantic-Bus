@@ -65,3 +65,5 @@ test/test_result/
 
 #config
 configuration.js
+
+./webServices
