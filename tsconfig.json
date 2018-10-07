@@ -4,7 +4,7 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "./webServices",
+    "outDir": "./build",
     "lib": ["es5", "es2015", "dom"]
   },
   "include": [
