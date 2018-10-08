@@ -1,4 +1,4 @@
-module.exports = function(router, amqpClient) {
+export default function fragmentWebService(router, amqpClient) {
   //TODO Ugly
   this.amqpClient = amqpClient;
   //this.stompClient = stompClient;

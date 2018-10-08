@@ -11,7 +11,7 @@ var sift = require('sift');
 
 
 
-module.exports = function(router) {
+export default function adminWebService(router) {
 
   // --------------------------------------------------------------------------------
   router.get('/errors', function(req, res, next) {

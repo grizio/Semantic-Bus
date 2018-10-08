@@ -7,7 +7,7 @@ var componentsCategoriesTree = require('./componentsCategoriesTree')
 // --------------------------------------------------------------------------------
 
 
-module.exports = function(router,unsafeRouter, app,stompClient) {
+export default function technicalComponentWebService(router,unsafeRouter, app,stompClient) {
 
   // --------------------------------------------------------------------------------
 

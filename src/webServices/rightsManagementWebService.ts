@@ -12,7 +12,7 @@ var technicalComponentDirectory = require('./technicalComponentDirectory.js');
 
 
 
-module.exports = function(router) {
+export default function rightsManagementWebService(router) {
 
   // --------------------------------------------------------------------------------
 

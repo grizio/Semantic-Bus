@@ -1,4 +1,4 @@
-var jwtService = require('./jwtService');
+import * as jwtService from './jwtService';
 var inscription_lib_user = require('../lib/core/lib/inscription_lib')
 var auth_lib_user = require('../lib/core/lib/auth_lib');
 var user_lib = require('../lib/core/lib/auth_lib');
@@ -11,7 +11,7 @@ var user_lib = require('../lib/core/lib/user_lib');
 // --------------------------------------------------------------------------------
 
 
-module.exports = function (router,stompClient) {
+export default function authWebService(router,stompClient) {
 
   //TODO ugly
   this.stompClient=stompClient;
@@ -287,7 +287,7 @@ module.exports = function (router,stompClient) {
     //console.log(this);
     //console.log('stompClient 1',this.stompClient);
     if (req.body.token) {
-      jwtService.require_token(req.body.token).then(function (token_result) {
+      jwtService.require_token(req.body.token).then(function (token_result: any) {
         //console.log('stompClient 2',this.stompClient);
         if (token_result != false) {
           user_lib.getWithWorkspace(token_result.iss).then(u=>{

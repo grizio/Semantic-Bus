@@ -10,7 +10,7 @@ var test = require('../scripts/requestTest')
 // --------------------------------------------------------------------------------
 
 
-module.exports = function (router,stompClient) {
+export default function userWebservices(router,stompClient) {
 
 
  // ---------------------------------------  ALL USERS  -----------------------------------------

@@ -13,7 +13,7 @@ var sift = require('sift');
 // --------------------------------------------------------------------------------
 
 
-module.exports = function(router,stompClient) {
+export default function workspaceWebService(router,stompClient) {
   //TODO Ugly
   this.stompClient=stompClient;
   // ---------------------------------------  ALL USERS  -----------------------------------------
@@ -264,7 +264,7 @@ module.exports = function(router,stompClient) {
 
   //return updated Links
   router.post('/workspaceComponent/connection', function(req, res, next) {
-    configuration = require('../../configuration');
+    const configuration = require('../../configuration');
     let body = req.body;
     if (configuration.saveLock == false) {
       workspace_lib.addConnection(req.body.workspaceId,req.body.source,req.body.target).then(links=>{
@@ -279,7 +279,7 @@ module.exports = function(router,stompClient) {
 
   //return updated Links
   router.delete('/workspaceComponent/connection', function(req, res, next) {
-    configuration = require('../../configuration');
+    const configuration = require('../../configuration');
     let body = req.body;
     if (configuration.saveLock == false) {
       workspace_lib.removeConnection(req.body.workspaceId,req.body.linkId).then(links=>{

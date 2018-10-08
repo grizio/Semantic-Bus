@@ -1,4 +1,16 @@
 "use strict";
+import initialise from "./webServices/initialise";
+import authWebService from "./webServices/authWebService";
+import workspaceWebService from "./webServices/workspaceWebService";
+import workspaceComponentWebService from "./webServices/workspaceComponentWebService";
+import technicalComponentWebService from "./webServices/technicalComponentWebService";
+import userWebservices from "./webServices/userWebservices";
+import rightsManagementWebService from "./webServices/rightsManagementWebService";
+import adminWebService from "./webServices/adminWebService";
+import fragmentWebService from "./webServices/fragmentWebService";
+import google_auth_strategy from "./lib/core/Oauth/google_auth_strategy";
+import * as jwtService from "./webServices/jwtService"
+
 //memory leak tool, code is here to don't forget
 var memwatch = require('memwatch-next');
 var hd = new memwatch.HeapDiff();
@@ -54,10 +66,7 @@ httpGet.makeRequest('GET', {
     } else {
 
       console.log("~~ remote configuration saved");
-      require('./lib/core/Oauth/google_auth_strategy')(passport);
-
-      var jwtService = require('./webServices/jwtService')
-
+      google_auth_strategy(passport);
 
       //Sécurisation des route de data
       safe.use(function(req, res, next) {
@@ -134,15 +143,15 @@ httpGet.makeRequest('GET', {
 
 
         //TODO it's ugly!!!! sytem function is increment with stompClient
-        require('./webServices/initialise')(unSafeRouteur, amqpClient);
-        require('./webServices/authWebService')(unSafeRouteur, amqpClient);
-        require('./webServices/workspaceWebService')(safe, amqpClient);
-        require('./webServices/workspaceComponentWebService')(safe, amqpClient);
-        require('./webServices/technicalComponentWebService')(safe, unSafeRouteur, app, amqpClient);
-        require('./webServices/userWebservices')(safe, amqpClient);
-        require('./webServices/rightsManagementWebService')(safe, amqpClient);
-        require('./webServices/adminWebService')(safe, amqpClient);
-        require('./webServices/fragmentWebService')(safe, amqpClient);
+        initialise(unSafeRouteur)
+        authWebService(unSafeRouteur, amqpClient)
+        workspaceWebService(safe, amqpClient);
+        workspaceComponentWebService(safe, amqpClient);
+        technicalComponentWebService(safe, unSafeRouteur, app, amqpClient);
+        userWebservices(safe, amqpClient);
+        rightsManagementWebService(safe);
+        adminWebService(safe);
+        fragmentWebService(safe, amqpClient);
 
         ///OTHER APP COMPONENT
         ///SECURISATION DES REQUETES

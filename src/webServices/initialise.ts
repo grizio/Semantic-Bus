@@ -5,8 +5,7 @@ var configuration = require('../../configuration');
 // --------------------------------------------------------------------------------
 
 
-module.exports = function (router) {
-
+export default function initialise(router) {
     // --------------------------------------------------------------------------------
 
     router.get('/configurationhttps', function (req, res) {

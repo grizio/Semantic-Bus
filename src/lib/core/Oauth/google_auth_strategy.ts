@@ -8,7 +8,7 @@ var config = require('../../../../configuration');
 // --------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------
 
-module.exports = function (passport) {
+export default function google_auth_strategy(passport) {
     passport.use(new GoogleStrategy({
             clientID: config.googleAuth.clientID,
             clientSecret: config.googleAuth.clientSecret,
